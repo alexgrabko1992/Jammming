@@ -41,7 +41,13 @@ export default class App extends React.Component {
     this.setState({ playlistName: name });
   }
   savePlaylist() {
-    const trackURIs = this.playlistTracks.map((e) => e.uri);
+    const trackURIs = this.state.playlistTracks.map((e) => e.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs);
+    this.setState({
+      playlistTracks: [],
+      playlistName: "New Playlist",
+      searchResults: [],
+    });
   }
   search(term) {
     // this.setState({ searchResults: Spotify.search(term) });
