@@ -44,7 +44,12 @@ export default class App extends React.Component {
     const trackURIs = this.playlistTracks.map((e) => e.uri);
   }
   search(term) {
-    this.setState({ searchResults: Spotify.userSearch(term) });
+    // this.setState({ searchResults: Spotify.search(term) });
+    // console.log(Spotify.search(term));
+    // console.log(Spotify.getAccessToken());
+    Spotify.search(term).then((tracks) =>
+      this.setState({ searchResults: tracks })
+    );
   }
   render() {
     return (
